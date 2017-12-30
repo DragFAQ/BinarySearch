@@ -8,20 +8,31 @@ namespace BinarySearch.SearchEngine
 {
     class Interval
     {
-        private int[] values;
-        private int firstIndex;
-        private int lastIndex;
+        public int[] Values { get; }
+        public int FirstIndex { get; }
+        public int LastIndex { get; }
 
         public Interval(int[] array, int firstIndex, int lastIndex)
         {
-            values = array;
-            this.firstIndex = firstIndex;
-            this.lastIndex = lastIndex;
+            Values = array;
+            FirstIndex = firstIndex;
+            LastIndex = lastIndex;
         }
 
         public int getHalfIndex()
         {
-            return (lastIndex - firstIndex) / 2 + firstIndex;
+            return (LastIndex - FirstIndex) / 2 + FirstIndex;
+        }
+
+        public int getSize()
+        {
+            return LastIndex - FirstIndex + 1;
+        }
+
+        internal int getItem(int index)
+        {
+            // TODO: Check for interval contains "index" if (index >= FirstIndex && index <= LastIndex)
+            return Values[index];
         }
     }
 }

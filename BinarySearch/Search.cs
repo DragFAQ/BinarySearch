@@ -13,14 +13,33 @@ namespace BinarySearch
         {
             Interval interval = new Interval(array, 0, array.Length - 1);
 
-            searchValue(interval, value);
-
-            return -1;
+            return searchValue(interval, value, interval.FirstIndex, interval.LastIndex);
         }
 
-        private static void searchValue(Interval interval, int value)
+        private static int searchValue(Interval inInterval, int value, int firstIndex, int lastIndex)
         {
-            throw new NotImplementedException();
+            int result = -1;
+
+            Interval interval = new Interval(inInterval.Values, firstIndex, lastIndex);
+            if (interval.getSize() < 3)
+            {
+                result = interval.getItem(interval.FirstIndex) == value ? interval.FirstIndex : -1;
+                if (result == -1)
+                    result = interval.getItem(interval.LastIndex) == value ? interval.LastIndex : -1;
+            }
+            else
+            {
+                int halfIndex = interval.getHalfIndex();
+
+                if (interval.getItem(halfIndex) == value)
+                    result = halfIndex;
+                else if (interval.getItem(halfIndex) > value)
+                    searchValue(interval, value, interval.FirstIndex, halfIndex - 1);
+                else
+                    searchValue(interval, value, halfIndex + 1, interval.LastIndex);
+            }
+
+            return result;
         }
     }
 }
