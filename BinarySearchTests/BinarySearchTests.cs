@@ -64,7 +64,13 @@ namespace BinarySearchTests
         [TestMethod]
         public void EmptyArray()
         {
-            Assert.IsTrue(Search.SearchItem(new int[] { }, 10) == -1, "Wrong Index");
+            Assert.IsTrue(Search.SearchItem(new int[] { }, 10) == -1, "Empty Array");
+        }
+
+        [TestMethod]
+        public void NullArray()
+        {
+            Assert.IsTrue(Search.SearchItem(null, 10) == -1, "Null Array");
         }
 
         [TestMethod]

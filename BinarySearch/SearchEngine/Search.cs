@@ -9,16 +9,39 @@ namespace BinarySearch
 {
     public static class Search
     {
-        public static int SearchItem(int[] array, int value)
+        public static int SearchItem(int[] inArray, int value)
         {
-            Interval interval = new Interval(array, 0, array.Length - 1);
+            int result;
 
-            return searchValue(interval, value, interval.FirstIndex, interval.LastIndex);
+            // Checks
+            if (inArray == null || inArray.Length == 0)
+                result = -1;
+            else
+            {
+                // Copy array to temp array for sorting
+                int[] array = new int[inArray.Length];
+                inArray.CopyTo(array, 0);
+                Array.Sort(array);
+                Interval interval = new Interval(array, 0, array.Length - 1);
+
+                result = searchValue(interval, value, interval.FirstIndex, interval.LastIndex);
+
+                // Search index in original array
+                if (result != -1)
+                    for (int i = 0; i < inArray.Length; i++)
+                        if (inArray[i] == array[result])
+                        {
+                            result = i;
+                            break;
+                        }
+            }
+
+            return result;
         }
 
         private static int searchValue(Interval inInterval, int value, int firstIndex, int lastIndex)
         {
-            int result = -1;
+            int result;
 
             Interval interval = new Interval(inInterval.Values, firstIndex, lastIndex);
             if (interval.getSize() < 3)
