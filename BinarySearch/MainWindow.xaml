@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="207" Margin="45,74,0,0" VerticalAlignment="Top" Width="415"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="36" Margin="167,21,0,0" VerticalAlignment="Top" Width="181" Click="Button_Click"/>
+
     </Grid>
 </Window>

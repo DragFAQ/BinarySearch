@@ -24,5 +24,10 @@ namespace BinarySearch
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //webBrowser.     Search.SearchItem();
+        }
     }
 }

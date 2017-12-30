@@ -34,9 +34,9 @@ namespace BinarySearch
                 if (interval.getItem(halfIndex) == value)
                     result = halfIndex;
                 else if (interval.getItem(halfIndex) > value)
-                    searchValue(interval, value, interval.FirstIndex, halfIndex - 1);
+                    result = searchValue(interval, value, interval.FirstIndex, halfIndex - 1);
                 else
-                    searchValue(interval, value, halfIndex + 1, interval.LastIndex);
+                    result = searchValue(interval, value, halfIndex + 1, interval.LastIndex);
             }
 
             return result;
