@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinarySearch
+namespace BinarySearch.SearchEngine
 {
     public static class Search
     {

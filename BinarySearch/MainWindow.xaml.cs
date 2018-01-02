@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BinarySearch.Controller;
+using BinarySearch.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,9 +23,14 @@ namespace BinarySearch
     /// </summary>
     public partial class MainWindow : Window
     {
+        // TODO : Learn how to use DI here
+        SearchController controller;
+
         public MainWindow()
         {
             InitializeComponent();
+            // TODO : Learn how to use DI here
+            controller = new SearchController();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,8 +39,10 @@ namespace BinarySearch
             string[] strArray = tbArray.Text.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             int[] intArray = Array.ConvertAll(strArray, s => int.Parse(s));
 
-            int result = Search.SearchItem(intArray, int.Parse(tbValue.Text));
-            System.Windows.MessageBox.Show(Convert.ToString(result));
+            Search entity = new Search(intArray, int.Parse(tbValue.Text));
+
+            string resultObj = controller.searchIndexByValue(entity).GetAsString();
+            System.Windows.MessageBox.Show(resultObj);
         }
 
         private void NumberValidationTextBox(object sender, TextChangedEventArgs e)

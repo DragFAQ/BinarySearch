@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BinarySearch;
+using BinarySearch.SearchEngine;
 
 namespace BinarySearchTests
 {

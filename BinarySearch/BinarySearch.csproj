@@ -54,7 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Search.cs" />
+    <Compile Include="Controller\SearchController.cs" />
     <Compile Include="SearchEngine\Interval.cs" />
+    <Compile Include="SearchTO\Factory.cs" />
+    <Compile Include="SearchTO\ISearchTO.cs" />
+    <Compile Include="SearchTO\XMLImpl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
