@@ -2,6 +2,7 @@
 using BinarySearch.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Xml.Xsl;
 
 namespace BinarySearch
 {
@@ -33,6 +36,21 @@ namespace BinarySearch
             controller = new SearchController();
         }
 
+        public string TransformXMLToHTML(string inputXml, string xsltFileName)
+        {
+            XslCompiledTransform transform = new XslCompiledTransform();
+            using (XmlReader reader = XmlReader.Create(xsltFileName))
+            {
+                transform.Load(reader);
+            }
+            StringWriter results = new StringWriter();
+            using (XmlReader reader = XmlReader.Create(new StringReader(inputXml)))
+            {
+                transform.Transform(reader, null, results);
+            }
+            return results.ToString();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string[] separators = { ",", " " };
@@ -42,7 +60,8 @@ namespace BinarySearch
             Search entity = new Search(intArray, int.Parse(tbValue.Text));
 
             string resultObj = controller.searchIndexByValue(entity).GetAsString();
-            System.Windows.MessageBox.Show(resultObj);
+
+            webBrowser.NavigateToString(TransformXMLToHTML(resultObj, "..\\..\\Resources\\Example.xslt"));
         }
 
         private void NumberValidationTextBox(object sender, TextChangedEventArgs e)
